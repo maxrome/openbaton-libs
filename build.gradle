@@ -35,6 +35,8 @@ apply from: 'gradle/gradle/nexus.upload.plugin.gradle'
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'eclipse'
+//apply plugin: 'maven'
+apply plugin: 'maven-publish'
 
 sourceCompatibility = 1.7
 
@@ -71,6 +73,25 @@ repositories {
     mavenCentral()
     mavenLocal()
 }
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+}
+
+/*publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifactId "catalogue"
+            version "3.2.2-SNAPSHOT"
+            groupId "org.openbaton.catalogue"
+            artifact file("/home/ads/IdeaProjects/maxrome-openbaton-libs/catalogue/build/libs/catalogue-3.2.2-SNAPSHOT.jar")
+        }
+    }
+}*/
 
 allprojects {
 
